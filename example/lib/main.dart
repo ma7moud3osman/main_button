@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:create_package/create_package.dart';
+import 'package:main_button/main_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -81,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             CustomIconButton(
               label: 'test',
               onPressed: () {
-                print('CustomIconButton');
+                log('CustomIconButton');
               },
             ),
             const Text(

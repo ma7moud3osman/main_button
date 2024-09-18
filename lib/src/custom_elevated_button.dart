@@ -1,241 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// class CustomElevatedButton extends StatelessWidget {
-//   final double? width;
-//   final double? pa;
-//   final void Function()? onPressed;
-//   final String? label;
-//   final Widget? child;
-//   final String? imagePath;
-//   final Widget? icon;
-//   final Color? backgroundColor;
-//   final Color? textColor;
-//   final Color? disableColor;
-//   final bool isLoading;
-//   final double? opacity;
-//   final bool showShadow;
-//   final Color borderColor;
-//   final bool smallSize;
-//   final bool isDisable;
-//
-//   const CustomElevatedButton({
-//     super.key,
-//     this.label,
-//     this.child,
-//     this.width,
-//     this.icon,
-//     this.onPressed,
-//     this.imagePath,
-//     this.backgroundColor,
-//     this.textColor,
-//     this.disableColor,
-//     this.isLoading = false,
-//     this.showShadow = true,
-//     this.isDisable = false,
-//     this.opacity = 0.5,
-//     this.borderColor = Colors.transparent,
-//     this.smallSize = false,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DecoratedBox(
-//       decoration: ShapeDecoration(
-//         color: Colors.transparent,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: AppRadius.button,
-//         ),
-//         // shadows: !showShadow
-//         //     ? null
-//         //     : const [
-//         //         BoxShadow(
-//         //           color: AppColors.shadow,
-//         //           blurRadius: 4,
-//         //           offset: Offset(0, 2),
-//         //           spreadRadius: 0,
-//         //         )
-//         //       ],
-//       ),
-//       child: ElevatedButton(
-//         style: ButtonStyle(
-//           // shadowColor: MaterialStateProperty.all(Colors.lightBlue),
-//           elevation: WidgetStateProperty.all<double?>(0),
-//           padding: WidgetStateProperty.all(AppPadding.button),
-//           minimumSize: WidgetStateProperty.all<Size>(
-//             smallSize
-//                 ? Size(
-//                     getResponsiveSize(
-//                       mobile: width ?? 80.w,
-//                       tabletPortrait: 40.w,
-//                       tabletLandscape: 50.w,
-//                     ),
-//                     getResponsiveSize(
-//                       mobile: 40.h,
-//                       tabletPortrait: 40.h,
-//                       tabletLandscape: 50.h,
-//                     ),
-//                   )
-//                 : Size(
-//                     getResponsiveSize(
-//                       mobile: width ?? 10.w,
-//                       tabletPortrait: 375,
-//                       tabletLandscape: 375,
-//                     ),
-//                     getResponsiveSize(
-//                       mobile: 56.h,
-//                       tabletPortrait: 40.h,
-//                       tabletLandscape: 50.h,
-//                     ),
-//                   ),
-//           ),
-//           maximumSize: WidgetStateProperty.all<Size>(
-//             // smallSize
-//             //     ?
-//             Size(
-//               getResponsiveSize(
-//                 mobile: width ?? double.infinity,
-//                 tabletPortrait: 375,
-//                 tabletLandscape: 375,
-//               ),
-//               getResponsiveSize(
-//                 mobile: 56.h,
-//                 tabletPortrait: 40.h,
-//                 tabletLandscape: 50.h,
-//               ),
-//             ),
-//
-//             // : Size(
-//             //     getResponsiveSize(
-//             //       mobile: width,
-//             //       tabletPortrait: 420,
-//             //       tabletLandscape: 370,
-//             //     ),
-//             //     getResponsiveSize(
-//             //       mobile: 44.h,
-//             //       tabletPortrait: 50.h,
-//             //       tabletLandscape: 55.h,
-//             //     ),
-//             //   ),
-//           ),
-//           backgroundColor: WidgetStateProperty.resolveWith<Color>(
-//             (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-//                 ? context.primaryColor.shade300
-//                 : backgroundColor ?? context.primaryColor,
-//           ),
-//           foregroundColor: WidgetStateProperty.resolveWith<Color>(
-//             (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-//                 ? context.grey
-//                 : textColor ?? context.backgroundColor,
-//           ),
-//           side: WidgetStateProperty.resolveWith<BorderSide>(
-//             (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-//                 ? BorderSide(color: borderColor, width: 0.5)
-//                 : BorderSide(color: borderColor, width: 0.5),
-//           ),
-//           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-//             RoundedRectangleBorder(borderRadius: AppRadius.button),
-//           ),
-//         ),
-//         onPressed: isLoading || isDisable ? null : onPressed,
-//         child: isLoading
-//             ? SizedBox(
-//                 width: smallSize ? width ?? 60.w : width,
-//                 height: smallSize ? 40.h : 56.h,
-//                 child: Center(
-//                   child: SizedBox(
-//                     width: 15.r,
-//                     height: 15.r,
-//                     child: CircularProgressIndicator(
-//                       color: textColor ?? context.primaryColor,
-//                       backgroundColor:
-//                           backgroundColor ?? context.backgroundColor,
-//                     ),
-//                   ),
-//                 ),
-//               )
-//             : imagePath == null && icon == null
-//                 ? FittedBox(
-//                     fit: BoxFit.scaleDown,
-//                     child: child ??
-//                         Text(
-//                           label == null ? " " : label!.tr(),
-//                           maxLines: 1,
-//                           style: context.labelMedium?.copyWith(
-//                             color: isDisable
-//                                 ? Colors.white
-//                                 : textColor ?? Colors.white,
-//                             fontWeight: FontWeight.w600,
-//                             height: 0.0,
-//                             // fontSize: getResponsiveSize(
-//                             //   mobile: 16.sp,
-//                             //   tabletPortrait: 11.sp,
-//                             //   tabletLandscape: 7.sp,
-//                             // ),
-//                           ),
-//                         ),
-//                   )
-//                 : SizedBox(
-//                     width: width,
-//                     child: FittedBox(
-//                       fit: BoxFit.scaleDown,
-//                       child: Row(
-//                         mainAxisAlignment: icon == null
-//                             ? MainAxisAlignment.spaceEvenly
-//                             : MainAxisAlignment.center,
-//                         children: [
-//                           icon == null
-//                               ? Opacity(
-//                                   opacity: opacity!,
-//                                   child: imagePath!.endsWith('svg')
-//                                       ? SvgPicture.asset(
-//                                           imagePath!,
-//                                           width: 25.w,
-//                                           height: 25.h,
-//                                           colorFilter: ColorFilter.mode(
-//                                             textColor ??
-//                                                 context.backgroundColor,
-//                                             BlendMode.srcIn,
-//                                           ),
-//                                         )
-//                                       : Image.asset(
-//                                           imagePath!,
-//                                           width: 30.w,
-//                                           height: 30.h,
-//                                           color: textColor ??
-//                                               context.backgroundColor,
-//                                         ),
-//                                 )
-//                               : icon!,
-//                           const HorizontalMediumSpacer(),
-//                           FittedBox(
-//                             fit: BoxFit.scaleDown,
-//                             child: Text(
-//                               label == null ? "" : label!.tr(),
-//                               maxLines: 1,
-//                               style: context.labelMedium?.copyWith(
-//                                 fontWeight: FontWeight.w600,
-//                                 color: isDisable
-//                                     ? context.grey
-//                                     : textColor ?? Colors.white,
-//                                 height: 0.0,
-//                                 // fontSize: getResponsiveSize(
-//                                 //   mobile: 16.sp,
-//                                 //   tabletPortrait: 11.sp,
-//                                 //   tabletLandscape: 7.sp,
-//                                 // ),
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//       ),
-//     );
-//   }
-// }
-
 /// A custom icon button widget that provides a variety of styling and functionality options.
 ///
 /// This button supports various states such as loading and disabled, allows customization
@@ -244,6 +9,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomIconButton extends StatelessWidget {
   /// The width of the button. If `null`, the button will use a default width based on other properties.
   final double? width;
+
+  /// The height of the button. If `null`, the button will use a default width based on other properties.
+  /// Default is `44`.
+  final double height;
 
   /// The padding inside the button. This determines the space between the button's content and its border.
   /// Default is `12`.
@@ -301,6 +70,7 @@ class CustomIconButton extends StatelessWidget {
   const CustomIconButton({
     super.key,
     this.width,
+    this.height = 44,
     this.padding = 12,
     this.borderRadius = 8,
     this.label,
@@ -345,20 +115,12 @@ class CustomIconButton extends StatelessWidget {
           elevation: WidgetStateProperty.all<double?>(0),
           padding: WidgetStateProperty.all(EdgeInsets.all(padding)),
           minimumSize: WidgetStateProperty.all<Size>(
-            smallSize
-                ? Size(
-                    width ?? 80,
-                    40,
-                  )
-                : Size(
-                    width ?? 10,
-                    56,
-                  ),
+            smallSize ? Size(width ?? 80, 40) : Size(width ?? 10, height),
           ),
           maximumSize: WidgetStateProperty.all<Size>(
             // smallSize
             //     ?
-            Size(width ?? double.infinity, 56),
+            Size(width ?? double.infinity, height),
           ),
           backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (Set<WidgetState> states) => states.contains(WidgetState.disabled)
@@ -383,7 +145,7 @@ class CustomIconButton extends StatelessWidget {
         child: isLoading
             ? SizedBox(
                 width: smallSize ? width ?? 60 : width,
-                height: smallSize ? 40 : 56,
+                height: smallSize ? 40 : height,
                 child: Center(
                   child: SizedBox(
                     width: 15,

@@ -1,7 +1,8 @@
-name: create_package
-description: "custom button widget"
-version: 0.0.1
-homepage: null
+name: main_button
+description: "is a versatile Flutter package for creating highly customizable buttons with options for loading indicators, disabled states, and flexible content."
+version: 0.0.6
+homepage: https://github.com/abdelrahmanghanem
+repository: https://github.com/abdelrahmanghanem/main_button.git
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -17,10 +18,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-# The following section is specific to Flutter packages.
-flutter: null
+
+flutter:
 
 # To add assets to your package, add an assets section, like this:
 # assets:

@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  create_package:
+  main_button:
     path: ../
 
   cupertino_icons: ^1.0.6
