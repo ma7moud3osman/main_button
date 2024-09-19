@@ -1,3 +1,7 @@
+## 0.0.7
+
+* edit url repository .
+
 ## 0.0.6
 
 * edit package name and description.

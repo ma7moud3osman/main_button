@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 /// This button supports various states such as loading and disabled, allows customization
 /// of its appearance through properties like padding, border radius, and colors, and can display
 /// either an image, an icon, or text.
-class CustomIconButton extends StatelessWidget {
+class MainButton extends StatelessWidget {
   /// The width of the button. If `null`, the button will use a default width based on other properties.
   final double? width;
 
@@ -67,7 +67,7 @@ class CustomIconButton extends StatelessWidget {
   /// Creates a new instance of `CustomIconButton`.
   ///
   /// The `onPressed` callback will be invoked when the button is tapped unless `isLoading` or `isDisable` is `true`.
-  const CustomIconButton({
+  const MainButton({
     super.key,
     this.width,
     this.height = 44,
@@ -243,5 +243,14 @@ class CustomIconButton extends StatelessWidget {
                   ),
       ),
     );
+  }
+}
+
+class CustomElevatedButton extends MainButton {
+  const CustomElevatedButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
