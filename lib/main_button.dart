@@ -1,3 +1,4 @@
 library main_button;
 
-export 'src/custom_elevated_button.dart';
+export 'src/main_button.dart';
+export 'src/widgets/image_widget.dart';
