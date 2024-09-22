@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/src/functions/get_button_color.dart';
+import 'package:main_button/src/widgets/image_widget.dart';
+import 'package:main_button/src/widgets/text_widget.dart';
 
-import 'button_style_class.dart';
-import 'widgets/circular_indicator_widget.dart';
-import 'widgets/image_widget.dart';
-import 'widgets/text_widget.dart';
+import 'widgets/elevated_button_widget.dart';
+
+enum MainButtonEnum {
+  primary,
+  secondary,
+  tertiary,
+}
 
 /// A custom icon button widget that provides a variety of styling and functionality options.
 ///
@@ -58,6 +64,7 @@ class MainButton extends StatelessWidget {
 
   /// The opacity of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
   final double? opacity;
+  final MainButtonEnum type;
 
   /// Creates a new instance of `CustomIconButton`.
   ///
@@ -79,6 +86,7 @@ class MainButton extends StatelessWidget {
     this.borderColor = Colors.transparent,
     this.smallSize = false,
     this.opacity,
+    this.type = MainButtonEnum.primary,
   });
   factory MainButton.icon({
     required String label,
@@ -101,6 +109,7 @@ class MainButton extends StatelessWidget {
     bool showShadow = false,
     bool isDisable = false,
     Color borderColor = Colors.transparent,
+    MainButtonEnum type = MainButtonEnum.primary,
   }) {
     return _MainIconButton(
       iconType: iconType,
@@ -122,89 +131,33 @@ class MainButton extends StatelessWidget {
       borderColor: borderColor,
       smallSize: smallSize,
       opacity: opacity,
-      spaceBetweenIconAndText: spaceBetweenIconAndText,
+      contentPadding: spaceBetweenIconAndText,
+      type: type,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.all(Radius.circular(borderRadius));
-    return DecoratedBox(
-      decoration: ShapeDecoration(
-        color: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: radius,
-        ),
-        shadows: !showShadow
-            ? null
-            : const [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                  spreadRadius: 0,
-                )
-              ],
-      ),
-      child: ElevatedButton(
-        style: ButtonStyleClass(
-          width: width,
-          height: height,
-          radius: borderRadius,
-          textColor: textColor,
-          borderColor: borderColor,
-          background: backgroundColor,
-          context: context,
-          smallSize: smallSize,
-          opacity: opacity,
-          contentPadding: padding ?? const EdgeInsets.all(12),
-        ).apply,
-        // ButtonStyle(
-        //   // shadowColor: MaterialStateProperty.all(Colors.lightBlue),
-        //   elevation: WidgetStateProperty.all<double?>(0),
-        //   padding: WidgetStateProperty.all(EdgeInsets.all(padding)),
-        //   minimumSize: WidgetStateProperty.all<Size>(
-        //     smallSize ? Size(width ?? 80, 40) : Size(width ?? 10, height),
-        //   ),
-        //   maximumSize: WidgetStateProperty.all<Size>(
-        //     // smallSize
-        //     //     ?
-        //     Size(width ?? double.infinity, height),
-        //   ),
-        //   backgroundColor: WidgetStateProperty.resolveWith<Color>(
-        //     (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-        //         ? Theme.of(context).primaryColor.withOpacity(opacity ?? 0.7)
-        //         : backgroundColor ?? Theme.of(context).primaryColor,
-        //   ),
-        //   foregroundColor: WidgetStateProperty.resolveWith<Color>(
-        //     (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-        //         ? Colors.grey
-        //         : textColor ?? Theme.of(context).scaffoldBackgroundColor,
-        //   ),
-        //   side: WidgetStateProperty.resolveWith<BorderSide>(
-        //     (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-        //         ? BorderSide(color: borderColor, width: 0.5)
-        //         : BorderSide(color: borderColor, width: 0.5),
-        //   ),
-        //   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-        //     RoundedRectangleBorder(borderRadius: radius),
-        //   ),
-        // ),
-        onPressed: isLoading || isDisable ? null : onPressed,
-        child: isLoading
-            ? SizedBox(
-                width: smallSize ? width ?? 60 : width,
-                height: smallSize ? 40 : height,
-                child: CircularIndicatorWidget(
-                  color: textColor,
-                  backgroundColor: backgroundColor,
-                ),
-              )
-            : TextWidget(
-                label: label,
-                isDisable: isDisable,
-                textColor: textColor ?? Colors.white,
-              ),
+    return ElevatedButtonWidget(
+      width: width,
+      height: height,
+      padding: padding,
+      borderRadius: borderRadius,
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+      disableColor: disableColor,
+      isLoading: isLoading,
+      showShadow: showShadow,
+      isDisable: isDisable,
+      borderColor: borderColor,
+      smallSize: smallSize,
+      opacity: opacity,
+      type: type,
+      onPressed: onPressed,
+      child: TextWidget(
+        label: label,
+        isDisable: isDisable,
+        textColor: getTextColor(type, context, color: textColor),
       ),
     );
   }
@@ -224,7 +177,7 @@ class _MainIconButton extends MainButton {
 
   /// The imageSize of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
   final double? imageSize;
-  final double? spaceBetweenIconAndText;
+  final double? contentPadding;
 
   final IconType iconType;
 
@@ -236,7 +189,7 @@ class _MainIconButton extends MainButton {
     required this.icon,
     required this.imageSize,
     required this.iconType,
-    required this.spaceBetweenIconAndText,
+    required this.contentPadding,
     required super.width,
     required super.height,
     required super.padding,
@@ -252,78 +205,53 @@ class _MainIconButton extends MainButton {
     required super.smallSize,
     required super.opacity,
     required super.label,
+    required super.type,
   });
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.all(Radius.circular(borderRadius));
-    return DecoratedBox(
-      decoration: ShapeDecoration(
-        color: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: radius,
-        ),
-        shadows: !showShadow
-            ? null
-            : const [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                  spreadRadius: 0,
-                )
-              ],
-      ),
-      child: ElevatedButton(
-        style: ButtonStyleClass(
-          width: width,
-          height: height,
-          radius: borderRadius,
-          textColor: textColor,
-          borderColor: borderColor,
-          background: backgroundColor,
-          context: context,
-          smallSize: smallSize,
-          opacity: opacity,
-          contentPadding: padding ?? const EdgeInsets.all(12),
-        ).apply,
-        onPressed: isLoading || isDisable ? null : onPressed,
-        child: isLoading
-            ? SizedBox(
-                width: smallSize ? width ?? 60 : width,
-                height: smallSize ? 40 : height,
-                child: CircularIndicatorWidget(
-                  color: textColor,
-                  backgroundColor: backgroundColor,
-                ),
-              )
-            : SizedBox(
-                width: width,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(
-                    mainAxisAlignment: icon == null
-                        ? MainAxisAlignment.spaceEvenly
-                        : MainAxisAlignment.center,
-                    children: [
-                      ImageWidget(
-                        iconType: iconType,
-                        imagePath: imagePath,
-                        imageSize: imageSize,
-                        opacity: opacity,
-                        color: textColor,
-                        icon: icon,
-                      ),
-                      SizedBox(width: spaceBetweenIconAndText),
-                      TextWidget(
-                        label: label,
-                        isDisable: isDisable,
-                        textColor: textColor ?? Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
+    return ElevatedButtonWidget(
+      width: width,
+      height: height,
+      padding: padding,
+      borderRadius: borderRadius,
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+      disableColor: disableColor,
+      isLoading: isLoading,
+      showShadow: showShadow,
+      isDisable: isDisable,
+      borderColor: borderColor,
+      smallSize: smallSize,
+      opacity: opacity,
+      type: type,
+      onPressed: onPressed,
+      child: SizedBox(
+        width: width,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
+            mainAxisAlignment: icon == null
+                ? MainAxisAlignment.spaceEvenly
+                : MainAxisAlignment.center,
+            children: [
+              ImageWidget(
+                iconType: iconType,
+                imagePath: imagePath,
+                imageSize: imageSize,
+                opacity: opacity,
+                color: textColor,
+                icon: icon,
               ),
+              SizedBox(width: contentPadding),
+              TextWidget(
+                label: label,
+                isDisable: isDisable,
+                textColor: textColor ?? Colors.white,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

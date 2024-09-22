@@ -26,7 +26,6 @@ class ButtonStyleClass extends ButtonStyle {
   });
 
   ButtonStyle get apply {
-    print('background =>  $background');
     return ButtonStyle(
       // shadowColor: MaterialStateProperty.all(Colors.lightBlue),
       elevation: WidgetStateProperty.all<double?>(0),

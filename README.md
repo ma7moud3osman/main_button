@@ -1,66 +1,73 @@
-# CustomIconButton
+# MainButton Flutter Package
 
 ## Overview
 
-`CustomIconButton` is a versatile Flutter widget designed to provide a customizable button with various styling and functional options. It supports different states, including loading and disabled, and allows you to configure its appearance with properties like padding, border radius, and colors. You can use it to display an image, an icon, or text.
+The `MainButton` package provides a flexible and customizable button widget for Flutter applications. It supports a wide range of styles and behaviors such as different button states, customizable text, icons, images, and color schemes. You can use it to create buttons with various designs, including loading indicators, shadows, and disabled states, with ease.
 
-## Features
+### Features
+- **Primary, Secondary, and Tertiary Buttons**: Supports three predefined button types (`MainButtonEnum`), each with its own default styling.
+- **Text, Icon, and Image Support**: The button can display text, icons, or images, giving you flexibility for different button designs.
+- **Customizable**: Offers extensive customization options like button size, padding, colors, border radius, and more.
+- **Loading and Disabled States**: Provides built-in support for loading indicators and disabled states.
+- **Elevated or Flat Style**: You can choose whether the button has a shadow or is flat based on your design needs.
 
-- **Customizable Width**: Set a specific width for the button or use a default width.
-- **Padding & Border Radius**: Adjust internal padding and corner roundness.
-- **Interactive States**: Handle press events and manage loading or disabled states.
-- **Flexible Content**: Display text, an icon, or an image inside the button.
-- **Styling Options**: Customize background color, text color, border color, opacity, and shadow.
+---
 
 ## Properties
 
-- `width`: The width of the button. If `null`, a default width is used.
-- `padding`: Internal padding of the button. Default is `12`.
-- `borderRadius`: Radius of the button's corners. Default is `8`.
-- `onPressed`: Callback triggered when the button is pressed. If `null`, the button will not respond to taps.
-- `label`: Text to display on the button. If `null`, no text will be shown.
-- `child`: A widget to display inside the button for custom content.
-- `imagePath`: Path to an image asset to display inside the button. If `null`, no image will be shown.
-- `icon`: A widget to use as an icon inside the button. If `null`, no icon will be shown.
-- `backgroundColor`: Background color of the button. Defaults to theme's primary color if `null`.
-- `textColor`: Color of the text displayed on the button. Defaults to theme's scaffold background color if `null`.
-- `disableColor`: Color of the button when it is disabled. Defaults to a theme-based color if `null`.
-- `isLoading`: If `true`, the button will display a loading indicator.
-- `opacity`: Controls the button's transparency. Defaults to `0.5` if `null`.
-- `showShadow`: If `true`, a shadow will be applied to the button.
-- `borderColor`: Color of the button's border.
-- `smallSize`: If `true`, renders the button smaller.
-- `isDisable`: If `true`, renders the button in a disabled state.
+### MainButton
+
+| Property        | Type             | Description                                                       |
+|-----------------|------------------|-------------------------------------------------------------------|
+| `width`         | `double?`        | Width of the button. Defaults to `double.infinity`.                |
+| `height`        | `double`         | Height of the button. Default is `44`.                             |
+| `padding`       | `EdgeInsets?`    | Internal padding of the button.                                    |
+| `borderRadius`  | `double`         | Defines the roundness of the button's corners. Default is `8`.      |
+| `onPressed`     | `VoidCallback?`  | Callback function when the button is pressed.                      |
+| `label`         | `String`         | Text label displayed on the button.                                |
+| `backgroundColor`| `Color?`        | Button background color.                                           |
+| `textColor`     | `Color?`         | Text color of the button label.                                    |
+| `disableColor`  | `Color?`         | Color used when the button is disabled.                            |
+| `isLoading`     | `bool`           | Shows a loading indicator if `true`. Default is `false`.           |
+| `showShadow`    | `bool`           | Adds a shadow effect if `true`. Default is `true`.                 |
+| `borderColor`   | `Color`          | Color for the button's border.                                     |
+| `smallSize`     | `bool`           | If `true`, renders a smaller version of the button.                |
+| `isDisable`     | `bool`           | If `true`, disables the button. Default is `false`.                |
+| `opacity`       | `double?`        | Opacity of the button.                                             |
+| `type`          | `MainButtonEnum` | Defines the button type: `primary`, `secondary`, or `tertiary`.    |
+
 
 ## Usage
 
 To use `CustomIconButton` in your Flutter app, you can create an instance of the button and configure its properties according to your needs. Below is an example of how to use the widget:
 
 ```dart
-CustomIconButton(
-  width: 100,
-  padding: 16,
-  borderRadius: 12,
-  onPressed: () {
-    // Handle button press
-  },
-  label: 'Click Me',
-  icon: Icon(Icons.add),
-  imagePath: 'assets/my_image.png',
-  backgroundColor: Colors.blue,
-  textColor: Colors.white,
-  disableColor: Colors.grey,
-  isLoading: false,
-  showShadow: true,
-  opacity: 0.8,
-  borderColor: Colors.black,
-  smallSize: false,
-  isDisable: false,
+MainButton(
+label: "Submit",
+onPressed: () {
+print("Button Pressed");
+},
+)
+```
+* __ Button with Icon __
+
+To create a button with an icon:
+
+```dart
+MainButton.icon(
+label: "Send",
+icon: Icons.send,
+onPressed: () {
+print("Icon Button Pressed");
+},
+backgroundColor: Colors.green,
+textColor: Colors.white,
 )
 ```
 
 ## Contributions
 Feel free to contribute to this project.
+
 If you find a bug or want a feature, but don't know how to fix/implement it, please fill an [issue](https://github.com/abdelrahmanghanem/main_button/issues).  
 If you fixed a bug or implemented a feature, please send a [pull request](https://github.com/abdelrahmanghanem/main_button/pulls).
 
