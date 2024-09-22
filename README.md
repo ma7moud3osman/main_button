@@ -57,3 +57,14 @@ CustomIconButton(
   smallSize: false,
   isDisable: false,
 )
+```
+
+## Contributions
+Feel free to contribute to this project.
+If you find a bug or want a feature, but don't know how to fix/implement it, please fill an [issue](https://github.com/ma7moud3osman/easy_stepper/issues).  
+If you fixed a bug or implemented a feature, please send a [pull request](https://github.com/ma7moud3osman/easy_stepper/pulls).
+<a href="https://github.com/abdelrahmanghanem/main_button/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=abdelrahmanghanem/main_button" />
+</a>
+Made with [contrib.rocks](https://contrib.rocks).
+ 
