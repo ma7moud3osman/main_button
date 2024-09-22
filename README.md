@@ -39,30 +39,30 @@ The `MainButton` package provides a flexible and customizable button widget for 
 
 ## Usage
 
-To use `CustomIconButton` in your Flutter app, you can create an instance of the button and configure its properties according to your needs. Below is an example of how to use the widget:
+To use `MainButton` in your Flutter app, you can create an instance of the button and configure its properties according to your needs. Below is an example of how to use the widget:
 
 ```dart
-MainButton(
-label: "Submit",
-onPressed: () {
-print("Button Pressed");
-},
-)
+    MainButton(
+        label: "Submit",
+        onPressed: () {
+           print("Button Pressed");
+        },
+    ),
 ```
-* __ Button with Icon __
+* __Button with Icon__
 
 To create a button with an icon:
 
 ```dart
-MainButton.icon(
-label: "Send",
-icon: Icons.send,
-onPressed: () {
-print("Icon Button Pressed");
-},
-backgroundColor: Colors.green,
-textColor: Colors.white,
-)
+    MainButton.icon(
+        label: "Send",
+        icon: Icons.send,
+        onPressed: () {
+            print("Icon Button Pressed");
+        },
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+    ),
 ```
 
 ## Contributions
@@ -72,7 +72,7 @@ If you find a bug or want a feature, but don't know how to fix/implement it, ple
 If you fixed a bug or implemented a feature, please send a [pull request](https://github.com/abdelrahmanghanem/main_button/pulls).
 
 <a href="https://github.com/abdelrahmanghanem/main_button/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=abdelrahmanghanem/main_button" />
+  <img src="https://contrib.rocks/image?repo=abdelrahmanghanem/main_button"  alt=""/>
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
