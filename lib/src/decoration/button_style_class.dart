@@ -7,6 +7,7 @@ class ButtonStyleClass extends ButtonStyle {
   final double? opacity;
   final Color? textColor;
   final Color borderColor;
+  final Color? disableColor;
   final Color? background;
   final BuildContext context;
   final bool smallSize;
@@ -20,6 +21,7 @@ class ButtonStyleClass extends ButtonStyle {
     required this.borderColor,
     required this.background,
     required this.context,
+    required this.disableColor,
     required this.smallSize,
     required this.opacity,
     required this.contentPadding,
@@ -40,7 +42,7 @@ class ButtonStyleClass extends ButtonStyle {
       ),
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-            ? Theme.of(context).primaryColor.withOpacity(opacity ?? 0.7)
+            ? disableColor ?? Colors.grey.shade100
             : background ?? Theme.of(context).primaryColor,
       ),
       foregroundColor: WidgetStateProperty.resolveWith<Color>(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:main_button/main_button.dart';
-import 'package:main_button/src/button_style_class.dart';
+import 'package:main_button/src/decoration/button_style_class.dart';
 import 'package:main_button/src/functions/get_button_color.dart';
 import 'package:main_button/src/widgets/circular_indicator_widget.dart';
 
@@ -65,7 +65,7 @@ class ElevatedButtonWidget extends StatelessWidget {
     this.textColor,
     this.disableColor,
     this.isLoading = false,
-    this.showShadow = true,
+    this.showShadow = false,
     this.isDisable = false,
     this.borderColor = Colors.transparent,
     this.smallSize = false,
@@ -105,6 +105,7 @@ class ElevatedButtonWidget extends StatelessWidget {
           smallSize: smallSize,
           opacity: opacity,
           contentPadding: padding ?? const EdgeInsets.all(12),
+          disableColor: disableColor,
         ).apply,
         onPressed: isLoading || isDisable ? null : onPressed,
         child: isLoading
