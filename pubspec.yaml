@@ -1,6 +1,6 @@
 name: main_button
 description: "is a versatile Flutter package for creating highly customizable buttons with options for loading indicators, disabled states, and flexible content."
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/abdelrahmanghanem
 repository: https://github.com/abdelrahmanghanem/main_button
 
@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.16
-  main_widgets: ^0.2.4
+  main_widgets: ^0.2.5
 
 dev_dependencies:
   flutter_lints: ^5.0.0

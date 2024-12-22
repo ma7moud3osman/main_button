@@ -1,3 +1,7 @@
+## 0.0.13
+
+* handel resize button
+
 ## 0.0.12
 
 * handel resize button
