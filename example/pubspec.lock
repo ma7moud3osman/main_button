@@ -238,15 +238,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.11"
+    version: "0.0.12"
   main_widgets:
     dependency: "direct main"
     description:
       name: main_widgets
-      sha256: a1c676f9fa2dfbd3883d64edb6cf258aa2ed90edf932f5faa5f7fbb05817b853
+      sha256: cffdd5ab85e44e620141cde57412143ea201056ec877f6910cb26ef637278f17
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.4"
+    version: "0.2.5"
   matcher:
     dependency: transitive
     description:
