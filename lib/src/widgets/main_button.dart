@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/main_button.dart';
 import 'package:main_button/src/functions/get_button_color.dart';
-import 'package:main_button/src/widgets/image_widget.dart';
 import 'package:main_button/src/widgets/text_widget.dart';
 
-import 'widgets/elevated_button_widget.dart';
+import 'elevated_button_widget.dart';
 
+part 'main_icon_button.dart';
+
+/// MainButtonEnum - primary - secondary - tertiary
 enum MainButtonEnum {
   primary,
   secondary,
@@ -19,10 +22,11 @@ enum MainButtonEnum {
 class MainButton extends StatelessWidget {
   /// The width of the button. If `null`, the button will use a default width based on other properties.
   final double? width;
+  final double? maxWidth;
 
   /// The height of the button. If `null`, the button will use a default width based on other properties.
   /// Default is `44`.
-  final double height;
+  final double? height;
 
   /// The padding inside the button. This determines the space between the button's content and its border.
   /// Default is `12`.
@@ -37,6 +41,7 @@ class MainButton extends StatelessWidget {
 
   /// The label text displayed on the button. If `null`, no text will be shown.
   final String label;
+  final TextStyle? labelStyle;
 
   /// The background color of the button. If `null`, a default color will be used.
   final Color? backgroundColor;
@@ -72,6 +77,7 @@ class MainButton extends StatelessWidget {
   const MainButton({
     super.key,
     this.width = double.infinity,
+    this.maxWidth = 370,
     this.height = 44,
     this.padding,
     this.borderRadius = 8,
@@ -87,20 +93,24 @@ class MainButton extends StatelessWidget {
     this.smallSize = false,
     this.opacity,
     this.type = MainButtonEnum.primary,
+    this.labelStyle,
   });
+
   factory MainButton.icon({
     required String label,
     required IconType iconType,
+    double? width = double.infinity,
+    TextStyle? labelStyle,
+    double? maxWidth = 370,
+    double borderRadius = 8,
+    double height = 44,
+    bool smallSize = false,
     double spaceBetweenIconAndText = 8.0,
     String? imagePath,
     IconData? icon,
     void Function()? onPressed,
     double? imageSize,
-    double? width = double.infinity,
     double? opacity,
-    double borderRadius = 8,
-    double height = 44,
-    bool smallSize = false,
     Color? textColor,
     Color? backgroundColor,
     EdgeInsets? padding,
@@ -112,12 +122,14 @@ class MainButton extends StatelessWidget {
     MainButtonEnum type = MainButtonEnum.primary,
   }) {
     return _MainIconButton(
+      width: width,
+      labelStyle: labelStyle,
+      maxWidth: maxWidth,
       iconType: iconType,
       label: label,
       imagePath: imagePath,
       icon: icon,
       imageSize: imageSize,
-      width: width,
       onPressed: onPressed,
       height: height,
       padding: padding,
@@ -139,10 +151,11 @@ class MainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButtonWidget(
-      width: width,
-      height: height,
-      padding: padding,
-      borderRadius: borderRadius,
+      maxWidth: maxWidth ?? 370,
+      width: width ?? double.infinity,
+      height: height?.hh ?? 44.hh,
+      padding: padding?.rr,
+      borderRadius: borderRadius.rr,
       backgroundColor: backgroundColor,
       textColor: textColor,
       disableColor: disableColor,
@@ -157,101 +170,8 @@ class MainButton extends StatelessWidget {
       child: TextWidget(
         label: label,
         isDisable: isDisable,
+        labelStyle: labelStyle,
         textColor: getTextColor(type, context, color: textColor),
-      ),
-    );
-  }
-}
-
-/// A custom icon button widget that provides a variety of styling and functionality options.
-///
-/// This button supports various states such as loading and disabled, allows customization
-/// of its appearance through properties like padding, border radius, and colors, and can display
-/// either an image, an icon, or text.
-class _MainIconButton extends MainButton {
-  /// The path to an image asset to be displayed inside the button. If `null`, no image will be shown.
-  final String? imagePath;
-
-  /// A widget that is used as an icon inside the button. If `null`, no icon will be shown.
-  final IconData? icon;
-
-  /// The imageSize of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
-  final double? imageSize;
-  final double? contentPadding;
-
-  final IconType iconType;
-
-  /// Creates a new instance of `CustomIconButton`.
-  ///
-  /// The `onPressed` callback will be invoked when the button is tapped unless `isLoading` or `isDisable` is `true`.
-  const _MainIconButton({
-    required this.imagePath,
-    required this.icon,
-    required this.imageSize,
-    required this.iconType,
-    required this.contentPadding,
-    required super.width,
-    required super.height,
-    required super.padding,
-    required super.borderRadius,
-    required super.onPressed,
-    required super.backgroundColor,
-    required super.textColor,
-    required super.disableColor,
-    required super.isLoading,
-    required super.showShadow,
-    required super.isDisable,
-    required super.borderColor,
-    required super.smallSize,
-    required super.opacity,
-    required super.label,
-    required super.type,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButtonWidget(
-      width: width,
-      height: height,
-      padding: padding,
-      borderRadius: borderRadius,
-      backgroundColor: backgroundColor,
-      textColor: textColor,
-      disableColor: disableColor,
-      isLoading: isLoading,
-      showShadow: showShadow,
-      isDisable: isDisable,
-      borderColor: borderColor,
-      smallSize: smallSize,
-      opacity: opacity,
-      type: type,
-      onPressed: onPressed,
-      child: SizedBox(
-        width: width,
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Row(
-            mainAxisAlignment: icon == null
-                ? MainAxisAlignment.spaceEvenly
-                : MainAxisAlignment.center,
-            children: [
-              ImageWidget(
-                iconType: iconType,
-                imagePath: imagePath,
-                imageSize: imageSize,
-                opacity: opacity,
-                color: textColor,
-                icon: icon,
-              ),
-              SizedBox(width: contentPadding),
-              TextWidget(
-                label: label,
-                isDisable: isDisable,
-                textColor: textColor ?? Colors.white,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

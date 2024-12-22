@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/main_button.dart';
 
 import 'assets_image_widget.dart';
 import 'icon_widget.dart';
 import 'svg_image_widget.dart';
+
+enum IconType { png, svg, icon }
 
 class ImageWidget extends StatelessWidget {
   final IconType iconType;
@@ -17,7 +20,7 @@ class ImageWidget extends StatelessWidget {
     required this.iconType,
     this.icon,
     this.imagePath,
-    this.opacity,
+    this.opacity = 0.5,
     this.color,
     this.imageSize,
   }) : assert(
@@ -28,51 +31,27 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getImageWidget(
-      iconType: iconType,
-      color: color,
-      imagePath: imagePath,
-      icon: icon,
-      opacity: opacity,
-      size: imageSize,
-    );
+    switch (iconType) {
+      case IconType.png:
+        return AssetsImageWidget(
+          imagePath: imagePath!,
+          opacity: opacity ?? 0.5,
+          imageColor: color,
+          size: imageSize ?? 24.rr,
+        );
+      case IconType.svg:
+        return SvgImageWidget(
+          imagePath: imagePath!,
+          opacity: opacity ?? 0.5,
+          imageColor: color,
+          size: imageSize ?? 24.rr,
+        );
+      case IconType.icon:
+        return IconWidget(
+          icon: icon!,
+          size: imageSize ?? 24.rr,
+          iconColor: color,
+        );
+    }
   }
-}
-
-getImageWidget({
-  required IconType iconType,
-  IconData? icon,
-  String? imagePath,
-  double? opacity,
-  Color? color,
-  double? size,
-}) {
-  switch (iconType) {
-    case IconType.png:
-      return AssetsImageWidget(
-        imagePath: imagePath!,
-        opacity: opacity ?? 0.5,
-        imageColor: color,
-        size: size ?? 24,
-      );
-    case IconType.svg:
-      return SvgImageWidget(
-        imagePath: imagePath!,
-        opacity: opacity ?? 0.5,
-        imageColor: color,
-        size: size ?? 24,
-      );
-    case IconType.icon:
-      return IconWidget(
-        icon: icon!,
-        size: size ?? 24,
-        iconColor: color,
-      );
-  }
-}
-
-enum IconType {
-  png,
-  svg,
-  icon,
 }

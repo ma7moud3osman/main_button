@@ -12,6 +12,35 @@ The `MainButton` package provides a flexible and customizable button widget for 
 - **Elevated or Flat Style**: You can choose whether the button has a shadow or is flat based on your design needs.
 
 ---
+## Installation
+
+1. Add the following to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  main_button: <latest_version> 
+```
+
+2. to handle responsive
+
+```dart
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // this very important
+    MainWidgetsUtil.init(
+      context,
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+    );
+    return MaterialApp(
+      home: const HomeScreen(),
+    );
+  }
+}
+```
 
 ## Properties
 

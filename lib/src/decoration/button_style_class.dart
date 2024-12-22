@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../main_button.dart';
+
 class ButtonStyleClass extends ButtonStyle {
-  final double? width;
+  final double width;
+  final double maxWidth;
+
   final double height;
   final double radius;
   final double? opacity;
@@ -15,6 +19,7 @@ class ButtonStyleClass extends ButtonStyle {
 
   const ButtonStyleClass({
     required this.width,
+    required this.maxWidth,
     required this.height,
     required this.radius,
     required this.textColor,
@@ -33,12 +38,14 @@ class ButtonStyleClass extends ButtonStyle {
       elevation: WidgetStateProperty.all<double?>(0),
       padding: WidgetStateProperty.all(contentPadding),
       minimumSize: WidgetStateProperty.all<Size>(
-        smallSize ? Size(width ?? 80, 40) : Size(width ?? 10, height),
+        smallSize
+            ? Size(width, 40)
+            : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
       ),
       maximumSize: WidgetStateProperty.all<Size>(
-        // smallSize
-        //     ?
-        Size(width ?? double.infinity, height),
+        smallSize
+            ? Size(width, height)
+            : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
       ),
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (Set<WidgetState> states) => states.contains(WidgetState.disabled)

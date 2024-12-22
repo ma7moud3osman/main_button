@@ -6,7 +6,8 @@ import 'package:main_button/src/widgets/circular_indicator_widget.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
   /// The width of the button. If `null`, the button will use a default width based on other properties.
-  final double? width;
+  final double width;
+  final double maxWidth;
 
   /// The height of the button. If `null`, the button will use a default width based on other properties.
   /// Default is `44`.
@@ -53,10 +54,12 @@ class ElevatedButtonWidget extends StatelessWidget {
   /// The opacity of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
   final double? opacity;
   final MainButtonEnum type;
+
   const ElevatedButtonWidget({
     super.key,
-    this.width = double.infinity,
-    this.height = 44,
+    required this.width,
+    required this.maxWidth,
+    required this.height,
     this.padding,
     this.borderRadius = 8,
     required this.child,
@@ -96,6 +99,7 @@ class ElevatedButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyleClass(
           width: width,
+          maxWidth: maxWidth,
           height: height,
           radius: borderRadius,
           textColor: getTextColor(type, context, color: textColor),
@@ -110,7 +114,7 @@ class ElevatedButtonWidget extends StatelessWidget {
         onPressed: isLoading || isDisable ? null : onPressed,
         child: isLoading
             ? SizedBox(
-                width: smallSize ? width ?? 60 : width,
+                width: smallSize ? 60 : width,
                 height: smallSize ? 40 : height,
                 child: CircularIndicatorWidget(
                   color: getLoadingColor(type, context, color: textColor),

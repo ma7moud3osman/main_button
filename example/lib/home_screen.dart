@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double maxWidth = 400;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -27,31 +28,32 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton(
+                maxWidth: maxWidth,
                 label: 'test',
-                isDisable: true,
                 onPressed: () => log('CustomIconButton'),
               ),
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton(
-                label: 'test',
-                isLoading: true,
+                maxWidth: maxWidth,
+                label: 'cancel',
                 onPressed: () => log('CustomIconButton'),
               ),
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton.icon(
+                maxWidth: maxWidth,
                 iconType: IconType.icon,
                 icon: Icons.add,
+                backgroundColor: Colors.red,
                 label: 'test',
                 onPressed: () => log('CustomIconButton'),
               ),
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton.icon(
+                maxWidth: maxWidth,
                 iconType: IconType.icon,
                 icon: Icons.add,
+                textColor: Colors.red,
                 borderRadius: 30,
-                width: 200,
-                // padding: const EdgeInsets.symmetric(horizontal: 12),
-
                 label: 'test',
                 onPressed: () => log('CustomIconButton'),
               ),
@@ -71,9 +73,9 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 16),
+        SizedBox(height: 16.hh),
         Text(title),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.hh),
       ],
     );
   }
