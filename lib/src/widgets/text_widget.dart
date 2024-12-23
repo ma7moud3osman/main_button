@@ -6,6 +6,7 @@ class TextWidget extends StatelessWidget {
   final Color? textColor;
   final bool isDisable;
   final TextStyle? labelStyle;
+  final double? fontSize;
 
   const TextWidget({
     super.key,
@@ -13,6 +14,7 @@ class TextWidget extends StatelessWidget {
     required this.isDisable,
     this.textColor,
     this.labelStyle,
+    this.fontSize,
   });
 
   @override

@@ -69,38 +69,40 @@ class MainButton extends StatelessWidget {
 
   /// The opacity of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
   final double? opacity;
+  final double? fontSize;
   final MainButtonEnum type;
 
   /// Creates a new instance of `CustomIconButton`.
   ///
   /// The `onPressed` callback will be invoked when the button is tapped unless `isLoading` or `isDisable` is `true`.
-  const MainButton({
-    super.key,
-    this.width = double.infinity,
-    this.maxWidth = 370,
-    this.height = 44,
-    this.padding,
-    this.borderRadius = 8,
-    required this.label,
-    this.onPressed,
-    this.backgroundColor,
-    this.textColor,
-    this.disableColor,
-    this.isLoading = false,
-    this.showShadow = true,
-    this.isDisable = false,
-    this.borderColor = Colors.transparent,
-    this.smallSize = false,
-    this.opacity,
-    this.type = MainButtonEnum.primary,
-    this.labelStyle,
-  });
+  const MainButton(
+      {super.key,
+      this.width = double.infinity,
+      this.maxWidth = 370,
+      this.height = 44,
+      this.padding,
+      this.borderRadius = 8,
+      required this.label,
+      this.onPressed,
+      this.backgroundColor,
+      this.textColor,
+      this.disableColor,
+      this.isLoading = false,
+      this.showShadow = true,
+      this.isDisable = false,
+      this.borderColor = Colors.transparent,
+      this.smallSize = false,
+      this.opacity,
+      this.type = MainButtonEnum.primary,
+      this.labelStyle,
+      this.fontSize});
 
   factory MainButton.icon({
     required String label,
     required IconType iconType,
     double? width = double.infinity,
     TextStyle? labelStyle,
+    double? fontSize,
     double? maxWidth = 370,
     double borderRadius = 8,
     double height = 44,
@@ -145,6 +147,7 @@ class MainButton extends StatelessWidget {
       opacity: opacity,
       contentPadding: spaceBetweenIconAndText,
       type: type,
+      fontSize: fontSize,
     );
   }
 
@@ -171,6 +174,7 @@ class MainButton extends StatelessWidget {
         label: label,
         isDisable: isDisable,
         labelStyle: labelStyle,
+        fontSize: fontSize,
         textColor: getTextColor(type, context, color: textColor),
       ),
     );

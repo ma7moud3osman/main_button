@@ -1,3 +1,6 @@
+## 0.0.15
+
+* add fontSize in main_button.icon widget.
 ## 0.0.14
 
 * handel text style  button icon
