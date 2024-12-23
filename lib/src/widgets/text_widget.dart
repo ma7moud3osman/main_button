@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/main_button.dart';
 
 class TextWidget extends StatelessWidget {
   final String label;
@@ -25,7 +26,7 @@ class TextWidget extends StatelessWidget {
             Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: isDisable ? Colors.white : textColor ?? Colors.white,
                   fontWeight: FontWeight.w600,
-                  fontSize: 16,
+                  fontSize: 16.spp,
                   height: 0.0,
                 ),
       ),

@@ -87,6 +87,7 @@ class _MainIconButton extends MainButton {
               TextWidget(
                 label: label,
                 isDisable: isDisable,
+                labelStyle: labelStyle,
                 textColor: textColor ?? Colors.white,
               ),
             ],

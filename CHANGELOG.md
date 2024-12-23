@@ -1,3 +1,6 @@
+## 0.0.14
+
+* handel text style  button icon
 ## 0.0.13
 
 * handel resize button
