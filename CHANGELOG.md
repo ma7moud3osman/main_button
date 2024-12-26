@@ -1,9 +1,16 @@
+## 0.0.16
+
+* handle disable label color.
+
+
 ## 0.0.15
 
 * add fontSize in main_button.icon widget.
+
 ## 0.0.14
 
-* handel text style  button icon
+* handel text style button icon
+
 ## 0.0.13
 
 * handel resize button

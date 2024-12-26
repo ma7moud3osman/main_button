@@ -3,7 +3,8 @@ import 'package:main_button/main_button.dart';
 
 class TextWidget extends StatelessWidget {
   final String label;
-  final Color? textColor;
+  final Color? labelColor;
+  final Color? disableLabelColor;
   final bool isDisable;
   final TextStyle? labelStyle;
   final double? fontSize;
@@ -12,9 +13,10 @@ class TextWidget extends StatelessWidget {
     super.key,
     required this.label,
     required this.isDisable,
-    this.textColor,
+    this.labelColor,
     this.labelStyle,
     this.fontSize,
+    this.disableLabelColor = Colors.white,
   });
 
   @override
@@ -26,9 +28,11 @@ class TextWidget extends StatelessWidget {
         maxLines: 1,
         style: labelStyle ??
             Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: isDisable ? Colors.white : textColor ?? Colors.white,
+                  color: isDisable
+                      ? (disableLabelColor)
+                      : (labelColor ?? Colors.white),
                   fontWeight: FontWeight.w600,
-                  fontSize: 16.spp,
+                  fontSize: fontSize ?? 16.spp,
                   height: 0.0,
                 ),
       ),

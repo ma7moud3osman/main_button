@@ -46,6 +46,7 @@ class _MainIconButton extends MainButton {
     required super.type,
     required super.labelStyle,
     required super.fontSize,
+    super.disableLabelColor,
   });
 
   @override
@@ -90,7 +91,8 @@ class _MainIconButton extends MainButton {
                 isDisable: isDisable,
                 labelStyle: labelStyle,
                 fontSize: fontSize,
-                textColor: textColor ?? Colors.white,
+                disableLabelColor: disableLabelColor,
+                labelColor: textColor ?? Colors.white,
               ),
             ],
           ),
