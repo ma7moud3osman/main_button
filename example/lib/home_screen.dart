@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    double maxWidth = 400;
+    double maxWidth = 450;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -38,12 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton(
+                width: 200,
                 maxWidth: maxWidth,
                 label: 'cancel',
                 onPressed: () => log('CustomIconButton'),
               ),
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton.icon(
+                width: 300,
                 maxWidth: maxWidth,
                 iconType: IconType.icon,
                 icon: Icons.add,

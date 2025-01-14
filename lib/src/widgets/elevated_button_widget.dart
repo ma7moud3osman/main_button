@@ -3,7 +3,6 @@ import 'package:main_button/main_button.dart';
 import 'package:main_button/src/decoration/button_style_class.dart';
 import 'package:main_button/src/functions/get_button_color.dart';
 import 'package:main_button/src/widgets/circular_indicator_widget.dart';
-import 'package:main_widgets/main_widgets.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
   ///  width  => default value is double.infinity
@@ -59,6 +58,9 @@ class ElevatedButtonWidget extends StatelessWidget {
   const ElevatedButtonWidget({
     super.key,
     this.width,
+
+    ///  maximum width  => default value is 370
+
     this.maxWidth,
     this.height,
     this.contentPadding,
@@ -79,7 +81,7 @@ class ElevatedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radiusValue = BorderRadius.all(Radius.circular(radius ?? 8.rr));
+    final radiusValue = BorderRadius.all(Radius.circular(radius ?? 8));
     final typeValue = type ?? MainButtonEnum.primary;
     return DecoratedBox(
       decoration: ShapeDecoration(
@@ -102,8 +104,8 @@ class ElevatedButtonWidget extends StatelessWidget {
         style: ButtonStyleClass(
           width: width ?? double.infinity,
           maxWidth: maxWidth ?? 370,
-          height: height ?? 44.hh,
-          radius: radius ?? 8.rr,
+          height: height ?? 44,
+          radius: radius ?? 8,
           labelColor: getTextColor(typeValue, context, color: labelColor),
           borderColor: getBorderColor(
             typeValue,
@@ -118,7 +120,7 @@ class ElevatedButtonWidget extends StatelessWidget {
           context: context,
           smallSize: smallSize ?? false,
           opacity: opacity,
-          contentPadding: contentPadding ?? const EdgeInsets.all(12).rr,
+          contentPadding: contentPadding ?? const EdgeInsets.all(12),
           disableColor: disableColor ?? Colors.grey.shade100,
         ).apply,
         onPressed:

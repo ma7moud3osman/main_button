@@ -1,10 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:main_widgets/main_widgets.dart';
 
 class ButtonStyleClass extends ButtonStyle {
   final double width;
   final double maxWidth;
-
   final double height;
   final double radius;
   final double? opacity;
@@ -36,14 +36,10 @@ class ButtonStyleClass extends ButtonStyle {
       elevation: WidgetStateProperty.all<double?>(0),
       padding: WidgetStateProperty.all(contentPadding),
       minimumSize: WidgetStateProperty.all<Size>(
-        smallSize
-            ? Size(width, height)
-            : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
+        Size(smallSize ? 60 : min(width, maxWidth), height),
       ),
       maximumSize: WidgetStateProperty.all<Size>(
-        smallSize
-            ? Size(width, height)
-            : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
+        Size(maxWidth, height),
       ),
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (Set<WidgetState> states) =>

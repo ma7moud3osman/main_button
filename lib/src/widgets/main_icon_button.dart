@@ -27,6 +27,8 @@ class _MainIconButton extends MainButton {
     required this.iconColor,
     this.spaceBetween,
     super.width,
+
+    ///  maximum width  => default value is 370
     super.maxWidth,
     required super.height,
     required super.contentPadding,
@@ -51,9 +53,11 @@ class _MainIconButton extends MainButton {
   @override
   Widget build(BuildContext context) {
     return ElevatedButtonWidget(
+      ///  maximum width  => default value is 370
+
       maxWidth: maxWidth,
       width: width,
-      height: height ?? 44.hh,
+      height: height ?? 44,
       contentPadding: contentPadding,
       radius: radius,
       backgroundColor: backgroundColor,
@@ -78,7 +82,7 @@ class _MainIconButton extends MainButton {
               ImageWidget(
                 iconType: iconType,
                 imagePath: imagePath,
-                imageSize: imageSize ?? 24.rr,
+                imageSize: imageSize ?? 24,
                 opacity: opacity,
                 icon: icon,
                 iconColor:

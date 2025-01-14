@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:main_button/main_button.dart';
 import 'package:main_button/src/functions/get_button_color.dart';
 import 'package:main_button/src/widgets/text_widget.dart';
-import 'package:main_widgets/main_widgets.dart';
 
 import 'elevated_button_widget.dart';
 
@@ -21,34 +20,6 @@ class MainButton extends ElevatedButtonWidget {
   final double? fontSize;
   final Color? disableLabelColor;
 
-  ///  width  => default value is double.infinity
-  ///
-  ///  maximum width  => default value is 370
-  ///
-  ///  height  => default value is 44
-  ///
-  ///  padding => const EdgeInsets.all(12).
-  ///
-  ///  radius  => default value is 10
-  ///
-  /// A callback function that is triggered when the button is pressed.
-  ///
-  ///  borderColor => default value is Colors.transparent
-  ///
-  /// isLoading => default value is false
-  ///
-  /// showShadow => default value is false
-  ///
-  /// type => default value is MainButtonEnum.primary
-  ///
-  /// labelColor => default value is Colors.white
-  ///
-  /// smallSize => default value is false
-  ///
-  /// borderColor => default value is Colors.transparent
-  ///
-  /// opacity => default value is null
-  ///
   const MainButton({
     required this.label,
     this.labelStyle,
@@ -74,40 +45,14 @@ class MainButton extends ElevatedButtonWidget {
     super.child,
   });
 
-  ///  width  => default value is double.infinity
-  ///
-  ///  maximum width  => default value is 370
-  ///
-  ///  height  => default value is 44
-  ///
-  ///  padding => const EdgeInsets.all(12).
-  ///
-  ///  radius  => default value is 10
-  ///
-  /// A callback function that is triggered when the button is pressed.
-  ///
-  ///  borderColor => default value is Colors.transparent
-  ///
-  /// isLoading => default value is false
-  ///
-  /// showShadow => default value is false
-  ///
-  /// type => default value is MainButtonEnum.primary
-  ///
-  /// labelColor => default value is Colors.white
-  ///
-  /// smallSize => default value is false
-  ///
-  /// borderColor => default value is Colors.transparent
-  ///
-  /// opacity => default value is null
-  ///
   factory MainButton.icon({
     required String label,
     required IconType iconType,
     double? width,
     TextStyle? labelStyle,
     double? fontSize,
+
+    ///  maximum width  => default value is 370
     double? maxWidth,
     double? radius,
     double? height,
@@ -135,6 +80,8 @@ class MainButton extends ElevatedButtonWidget {
       iconColor: iconColor,
       width: width,
       labelStyle: labelStyle,
+
+      ///  maximum width  => default value is 370
       maxWidth: maxWidth,
       iconType: iconType,
       label: label,
@@ -165,7 +112,10 @@ class MainButton extends ElevatedButtonWidget {
   Widget build(BuildContext context) {
     final typeValue = type ?? MainButtonEnum.primary;
     return ElevatedButtonWidget(
+      ///  width  => default value is double.infinity
       maxWidth: maxWidth,
+
+      ///  width  => default value is double.infinity
       width: width,
       height: height,
       contentPadding: contentPadding,
@@ -196,3 +146,32 @@ class MainButton extends ElevatedButtonWidget {
     );
   }
 }
+
+///  width  => default value is double.infinity
+///
+///  maximum width  => default value is 370
+///
+///  height  => default value is 44
+///
+///  padding => const EdgeInsets.all(12).
+///
+///  radius  => default value is 10
+///
+/// A callback function that is triggered when the button is pressed.
+///
+///  borderColor => default value is Colors.transparent
+///
+/// isLoading => default value is false
+///
+/// showShadow => default value is false
+///
+/// type => default value is MainButtonEnum.primary
+///
+/// labelColor => default value is Colors.white
+///
+/// smallSize => default value is false
+///
+/// borderColor => default value is Colors.transparent
+///
+/// opacity => default value is null
+///
