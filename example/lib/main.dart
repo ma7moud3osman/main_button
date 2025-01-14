@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main_button/main_button.dart';
+import 'package:main_widgets/main_widgets.dart';
 
 import 'home_screen.dart';
 

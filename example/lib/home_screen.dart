@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:main_button/main_button.dart';
+import 'package:main_widgets/main_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
               const HeaderWidget(title: 'MainButton.icon'),
               MainButton(
                 maxWidth: maxWidth,
-                label: 'test',
+                label: 'Submit',
+                backgroundColor: Colors.grey,
+
+                // labelStyle: TextStyle(fontSize: 10, color: Colors.red),
                 onPressed: () => log('CustomIconButton'),
               ),
               const HeaderWidget(title: 'MainButton.icon'),
@@ -53,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconType: IconType.icon,
                 icon: Icons.add,
                 textColor: Colors.red,
-                borderRadius: 30,
+                iconColor: Colors.white,
+                radius: 10,
                 label: 'test',
                 onPressed: () => log('CustomIconButton'),
               ),

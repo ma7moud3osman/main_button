@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_button/main_button.dart';
 
 import 'assets_image_widget.dart';
 import 'icon_widget.dart';
@@ -12,17 +11,17 @@ class ImageWidget extends StatelessWidget {
   final IconData? icon;
   final String? imagePath;
   final double? opacity;
-  final Color? color;
-  final double? imageSize;
+  final Color? iconColor;
+  final double imageSize;
 
   const ImageWidget({
     super.key,
     required this.iconType,
     this.icon,
     this.imagePath,
-    this.opacity = 0.5,
-    this.color,
-    this.imageSize,
+    this.opacity,
+    this.iconColor,
+    required this.imageSize,
   }) : assert(
           (iconType != IconType.icon && imagePath != null) ||
               (iconType == IconType.icon && icon != null),
@@ -36,21 +35,21 @@ class ImageWidget extends StatelessWidget {
         return AssetsImageWidget(
           imagePath: imagePath!,
           opacity: opacity ?? 0.5,
-          imageColor: color,
-          size: imageSize ?? 24.rr,
+          imageColor: iconColor,
+          size: imageSize,
         );
       case IconType.svg:
         return SvgImageWidget(
           imagePath: imagePath!,
           opacity: opacity ?? 0.5,
-          imageColor: color,
-          size: imageSize ?? 24.rr,
+          imageColor: iconColor,
+          size: imageSize,
         );
       case IconType.icon:
         return IconWidget(
           icon: icon!,
-          size: imageSize ?? 24.rr,
-          iconColor: color,
+          size: imageSize,
+          iconColor: iconColor,
         );
     }
   }

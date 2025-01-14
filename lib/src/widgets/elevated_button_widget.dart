@@ -3,89 +3,91 @@ import 'package:main_button/main_button.dart';
 import 'package:main_button/src/decoration/button_style_class.dart';
 import 'package:main_button/src/functions/get_button_color.dart';
 import 'package:main_button/src/widgets/circular_indicator_widget.dart';
+import 'package:main_widgets/main_widgets.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
-  /// The width of the button. If `null`, the button will use a default width based on other properties.
-  final double width;
-  final double maxWidth;
+  ///  width  => default value is double.infinity
+  final double? width;
 
-  /// The height of the button. If `null`, the button will use a default width based on other properties.
-  /// Default is `44`.
-  final double height;
+  ///  maximum width  => default value is 370
+  final double? maxWidth;
 
-  /// The padding inside the button. This determines the space between the button's content and its border.
-  /// Default is `12`.
-  final EdgeInsets? padding;
+  ///  height  => default value is 44
+  final double? height;
 
-  /// The border radius of the button. This defines how rounded the button's corners are.
-  /// Default is `8`.
-  final double borderRadius;
+  /// padding => const EdgeInsets.all(12).
+  final EdgeInsets? contentPadding;
 
-  /// A callback function that is triggered when the button is pressed. If `null`, the button will not respond to taps.
+  /// radius  => default value is 10
+  final double? radius;
+
+  /// A callback function that is triggered when the button is pressed.
   final void Function()? onPressed;
 
-  /// The label text displayed on the button. If `null`, no text will be shown.
-  final Widget child;
-
-  /// The background color of the button. If `null`, a default color will be used.
   final Color? backgroundColor;
 
-  /// The color of the text displayed on the button. If `null`, a default text color will be used.
-  final Color? textColor;
-
-  /// The color of the button when it is disabled. If `null`, a default disabled color will be used.
+  /// disableColor => default value is Colors.grey.shade300
   final Color? disableColor;
 
-  /// Indicates whether the button is in a loading state. If `true`, the button will show a loading indicator.
-  final bool isLoading;
+  /// isLoading => default value is false
+  final bool? isLoading;
 
-  /// Indicates whether a shadow should be shown behind the button. If `true`, a shadow will be applied.
-  final bool showShadow;
+  /// showShadow => default value is false
+  final bool? showShadow;
 
-  /// The color of the button's border. This is used to outline the button.
-  final Color borderColor;
+  /// borderColor => default value is Colors.transparent
+  final Color? borderColor;
 
-  /// Indicates whether the button is small-sized. If `true`, the button will be rendered smaller.
-  final bool smallSize;
+  /// smallSize => default value is false
+  final bool? smallSize;
 
-  /// Indicates whether the button is disabled. If `true`, the button will be rendered in a disabled state and will not respond to user interaction.
-  final bool isDisable;
+  /// isDisable => default value is false
+  final bool? isDisable;
 
-  /// The opacity of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
+  /// opacity => default value is null
+
   final double? opacity;
-  final MainButtonEnum type;
+
+  /// type => default value is MainButtonEnum.primary
+  final MainButtonEnum? type;
+
+  final Widget? child;
+
+  /// labelColor => default value is Colors.white
+  final Color? labelColor;
 
   const ElevatedButtonWidget({
     super.key,
-    required this.width,
-    required this.maxWidth,
-    required this.height,
-    this.padding,
-    this.borderRadius = 8,
-    required this.child,
+    this.width,
+    this.maxWidth,
+    this.height,
+    this.contentPadding,
+    this.radius,
+    this.child,
     this.onPressed,
     this.backgroundColor,
-    this.textColor,
+    this.labelColor,
     this.disableColor,
-    this.isLoading = false,
-    this.showShadow = false,
-    this.isDisable = false,
-    this.borderColor = Colors.transparent,
-    this.smallSize = false,
+    this.isLoading,
+    this.showShadow,
+    this.isDisable,
+    this.smallSize,
+    this.borderColor,
     this.opacity,
-    this.type = MainButtonEnum.primary,
+    this.type,
   });
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.all(Radius.circular(borderRadius));
+    final radiusValue = BorderRadius.all(Radius.circular(radius ?? 8.rr));
+    final typeValue = type ?? MainButtonEnum.primary;
     return DecoratedBox(
       decoration: ShapeDecoration(
         color: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: radius,
+          borderRadius: radiusValue,
         ),
-        shadows: !showShadow
+        shadows: !(showShadow ?? false)
             ? null
             : const [
                 BoxShadow(
@@ -98,26 +100,35 @@ class ElevatedButtonWidget extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ButtonStyleClass(
-          width: width,
-          maxWidth: maxWidth,
-          height: height,
-          radius: borderRadius,
-          textColor: getTextColor(type, context, color: textColor),
-          borderColor: getBorderColor(type, context, color: borderColor),
-          background: getBorderColor(type, context, color: backgroundColor),
+          width: width ?? double.infinity,
+          maxWidth: maxWidth ?? 370,
+          height: height ?? 44.hh,
+          radius: radius ?? 8.rr,
+          labelColor: getTextColor(typeValue, context, color: labelColor),
+          borderColor: getBorderColor(
+            typeValue,
+            context,
+            color: borderColor,
+          ),
+          background: getBorderColor(
+            typeValue,
+            context,
+            color: backgroundColor,
+          ),
           context: context,
-          smallSize: smallSize,
+          smallSize: smallSize ?? false,
           opacity: opacity,
-          contentPadding: padding ?? const EdgeInsets.all(12),
-          disableColor: disableColor,
+          contentPadding: contentPadding ?? const EdgeInsets.all(12).rr,
+          disableColor: disableColor ?? Colors.grey.shade100,
         ).apply,
-        onPressed: isLoading || isDisable ? null : onPressed,
-        child: isLoading
+        onPressed:
+            (isLoading ?? false) || (isDisable ?? false) ? null : onPressed,
+        child: (isLoading ?? false)
             ? SizedBox(
-                width: smallSize ? 60 : width,
-                height: smallSize ? 40 : height,
+                width: (smallSize ?? false) ? 60 : width,
+                height: (smallSize ?? false) ? 40 : height,
                 child: CircularIndicatorWidget(
-                  color: getLoadingColor(type, context, color: textColor),
+                  color: getLoadingColor(typeValue, context, color: labelColor),
                 ),
               )
             : child,

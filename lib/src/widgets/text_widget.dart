@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:main_button/main_button.dart';
 
 class TextWidget extends StatelessWidget {
   final String label;
-  final Color? labelColor;
-  final Color? disableLabelColor;
-  final bool isDisable;
-  final TextStyle? labelStyle;
-  final double? fontSize;
+  final TextStyle labelStyle;
 
   const TextWidget({
     super.key,
     required this.label,
-    required this.isDisable,
-    this.labelColor,
-    this.labelStyle,
-    this.fontSize,
-    this.disableLabelColor = Colors.white,
+    required this.labelStyle,
   });
 
   @override
@@ -26,15 +17,7 @@ class TextWidget extends StatelessWidget {
       child: Text(
         label,
         maxLines: 1,
-        style: labelStyle ??
-            Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: isDisable
-                      ? (disableLabelColor)
-                      : (labelColor ?? Colors.white),
-                  fontWeight: FontWeight.w600,
-                  fontSize: fontSize ?? 16.spp,
-                  height: 0.0,
-                ),
+        style: labelStyle,
       ),
     );
   }

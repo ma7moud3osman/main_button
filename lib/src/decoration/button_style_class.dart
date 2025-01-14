@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../main_button.dart';
+import 'package:main_widgets/main_widgets.dart';
 
 class ButtonStyleClass extends ButtonStyle {
   final double width;
@@ -9,10 +8,10 @@ class ButtonStyleClass extends ButtonStyle {
   final double height;
   final double radius;
   final double? opacity;
-  final Color? textColor;
+  final Color labelColor;
   final Color borderColor;
-  final Color? disableColor;
-  final Color? background;
+  final Color disableColor;
+  final Color background;
   final BuildContext context;
   final bool smallSize;
   final EdgeInsets contentPadding;
@@ -22,7 +21,7 @@ class ButtonStyleClass extends ButtonStyle {
     required this.maxWidth,
     required this.height,
     required this.radius,
-    required this.textColor,
+    required this.labelColor,
     required this.borderColor,
     required this.background,
     required this.context,
@@ -34,12 +33,11 @@ class ButtonStyleClass extends ButtonStyle {
 
   ButtonStyle get apply {
     return ButtonStyle(
-      // shadowColor: MaterialStateProperty.all(Colors.lightBlue),
       elevation: WidgetStateProperty.all<double?>(0),
       padding: WidgetStateProperty.all(contentPadding),
       minimumSize: WidgetStateProperty.all<Size>(
         smallSize
-            ? Size(width, 40)
+            ? Size(width, height)
             : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
       ),
       maximumSize: WidgetStateProperty.all<Size>(
@@ -48,14 +46,12 @@ class ButtonStyleClass extends ButtonStyle {
             : Size((MainWidgetsUtil.isTablet ? maxWidth : width), height),
       ),
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
-        (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-            ? disableColor ?? Colors.grey.shade100
-            : background ?? Theme.of(context).primaryColor,
+        (Set<WidgetState> states) =>
+            states.contains(WidgetState.disabled) ? disableColor : background,
       ),
       foregroundColor: WidgetStateProperty.resolveWith<Color>(
-        (Set<WidgetState> states) => states.contains(WidgetState.disabled)
-            ? Colors.grey
-            : textColor ?? Theme.of(context).scaffoldBackgroundColor,
+        (Set<WidgetState> states) =>
+            states.contains(WidgetState.disabled) ? Colors.grey : labelColor,
       ),
       side: WidgetStateProperty.resolveWith<BorderSide>(
         (Set<WidgetState> states) => states.contains(WidgetState.disabled)

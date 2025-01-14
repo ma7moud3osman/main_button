@@ -11,54 +11,52 @@ class _MainIconButton extends MainButton {
 
   /// A widget that is used as an icon inside the button. If `null`, no icon will be shown.
   final IconData? icon;
+  final Color? iconColor;
 
   /// The imageSize of the button. This controls how transparent the button is. If `null`, a default opacity will be used.
   final double? imageSize;
-  final double? contentPadding;
+  final double? spaceBetween;
 
   final IconType iconType;
 
-  /// Creates a new instance of `CustomIconButton`.
-  ///
-  /// The `onPressed` callback will be invoked when the button is tapped unless `isLoading` or `isDisable` is `true`.
   const _MainIconButton({
     required this.imagePath,
     required this.icon,
     required this.imageSize,
     required this.iconType,
-    required this.contentPadding,
-    required super.width,
-    required super.maxWidth,
+    required this.iconColor,
+    this.spaceBetween,
+    super.width,
+    super.maxWidth,
     required super.height,
-    required super.padding,
-    required super.borderRadius,
+    required super.contentPadding,
+    required super.radius,
     required super.onPressed,
     required super.backgroundColor,
-    required super.textColor,
     required super.disableColor,
     required super.isLoading,
     required super.showShadow,
     required super.isDisable,
     required super.borderColor,
-    required super.smallSize,
+    super.smallSize,
     required super.opacity,
     required super.label,
-    required super.type,
+    super.type,
     required super.labelStyle,
-    required super.fontSize,
-    super.disableLabelColor,
+    super.fontSize,
+    required super.disableLabelColor,
+    required super.labelColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButtonWidget(
-      maxWidth: maxWidth ?? 370,
-      width: width ?? double.infinity,
-      height: height?.hh ?? 44.hh,
-      padding: padding?.rr,
-      borderRadius: borderRadius.rr,
+      maxWidth: maxWidth,
+      width: width,
+      height: height ?? 44.hh,
+      contentPadding: contentPadding,
+      radius: radius,
       backgroundColor: backgroundColor,
-      textColor: textColor,
       disableColor: disableColor,
       isLoading: isLoading,
       showShadow: showShadow,
@@ -66,7 +64,7 @@ class _MainIconButton extends MainButton {
       borderColor: borderColor,
       smallSize: smallSize,
       opacity: opacity,
-      type: type,
+      type: type ?? MainButtonEnum.primary,
       onPressed: onPressed,
       child: SizedBox(
         width: width,
@@ -80,19 +78,24 @@ class _MainIconButton extends MainButton {
               ImageWidget(
                 iconType: iconType,
                 imagePath: imagePath,
-                imageSize: imageSize,
+                imageSize: imageSize ?? 24.rr,
                 opacity: opacity,
-                color: textColor,
                 icon: icon,
+                iconColor:
+                    iconColor ?? Theme.of(context).textTheme.labelMedium!.color,
               ),
-              SizedBox(width: contentPadding),
+              SizedBox(width: spaceBetween),
               TextWidget(
                 label: label,
-                isDisable: isDisable,
-                labelStyle: labelStyle,
-                fontSize: fontSize,
-                disableLabelColor: disableLabelColor,
-                labelColor: textColor ?? Colors.white,
+                labelStyle: labelStyle ??
+                    Theme.of(context).textTheme.labelMedium!.copyWith(
+                          color: (isDisable ?? false)
+                              ? disableLabelColor
+                              : labelColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: fontSize,
+                          height: 0.0,
+                        ),
               ),
             ],
           ),
